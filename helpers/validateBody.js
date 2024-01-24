@@ -1,15 +1,11 @@
-import HttpError from "./HttpError.js";
+const HttpError = require("./index");
 
-const validateBody = (schema) => {
-  const func = (req, _, next) => {
-    const { error } = schema.validate(req.body);
-    if (error) {
-      next(HttpError(400, error.message));
-    }
-    next();
-  };
+const validateBody = (req,res,next) => {
+  const {length} = Object.keys(req.body);
+  if(!length) {
+    return next(HttpError(400,'The data is not valid!'))
+  }
+  next();
+}
 
-  return func;
-};
-
-export default validateBody;
+module.exports = validateBody;
