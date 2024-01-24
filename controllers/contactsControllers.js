@@ -65,7 +65,7 @@ const updateContact = async (req, res, next) => {
     const result = await contactsService.updateById(id, updateItem);
 
     if (!result) {
-      throw HttpError(404, "Contact not found");
+      throw HttpError(404);
     }
     res.json(result);
   } catch (error) {
