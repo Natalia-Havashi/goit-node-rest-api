@@ -1,6 +1,6 @@
-const HttpError = require("./index");
+const {HttpError} = require("../helpers/index");
 
-const validateBody = (req,res,next) => {
+const isEmptyBody = (req,res,next) => {
   const {length} = Object.keys(req.body);
   if(!length) {
     return next(HttpError(400,'The data is not valid!'))
@@ -8,4 +8,4 @@ const validateBody = (req,res,next) => {
   next();
 }
 
-module.exports = validateBody;
+module.exports = {isEmptyBody}

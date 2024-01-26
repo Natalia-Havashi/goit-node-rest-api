@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 const app = require('./app');
-const e = require("express");
 
-const DB_HOST = "mongodb+srv://Natalia:QkXr0l3nIbvmxZQN@cluster0.izstgc4.mongodb.net/my-contacts?retryWrites=true&w=majority";
+const {DB_HOST,PORT = 3000} = process.env;
+
 mongoose.connect(DB_HOST)
 .then(()=> {
-app.listen(3000, () => {
-  console.log("Server running. Use our API on port: 3000")
+app.listen(PORT, () => {
+  console.log(`Database connection successful. Use our API on port: ${PORT}`)
 })
 
 })
