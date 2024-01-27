@@ -7,10 +7,12 @@ const {
   updateContact,
   updateStatusContact 
 } = require("../controllers/contactsControllers");
-const {validateBody, isEmptyBody, isValidId, isEmptyFavorit} = require('../middlewares/index')
+const {validateBody, isEmptyBody, isValidId, isEmptyFavorit,authenticate} = require('../middlewares/index')
 const { createContactSchema, updateContactSchema,contactUpdateFavoriteSchema} = require("../models/Contact");
 
 const contactsRouter = express.Router();
+
+contactsRouter.use(authenticate)
 
 contactsRouter.get("/", getAllContacts);
 
